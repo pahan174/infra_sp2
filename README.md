@@ -3,6 +3,15 @@
 Дынный проект написан в рамках выполнения итогового задания спирнта №15 в курсе Python-разработчик от Яндекс Практикума.
 Проект решает задачу предоставления API интерфейса для работы с социальной сетью Yatube.
 Через данный API интерфейс возможно создание сторонних приложений и WEB интерфейсов для данной соц. сети.
+## Использованный стэк технологий
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+
+
+
+
+
 
 ### Как запустить проект:
 
@@ -37,13 +46,15 @@ Starting infra_db_1 ... done
 Starting infra_web_1 ... done
 Starting infra_nginx_1 ... done
 ```
+**Миграции и сбор статики выполняется автоматически.**
 
-Выполните по очереди команды:
+### Управление пользователями
+
+Пользователяи создаются только из панели Администратора суперпользователя.
+Создать суперпользховтеля через комсанду:
 
 ```
-docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py createsuperuser
-docker-compose exec web python manage.py collectstatic --no-input 
 ```
 ## Проект готов к работе!!!
 
@@ -88,22 +99,17 @@ POSTGRES_USER=postgres # логин для подключения к базе д
 POSTGRES_PASSWORD=postgres # пароль для подключения к БД (установите свой)
 DB_HOST=db # название сервиса (контейнера)
 DB_PORT=5432 # порт для подключения к БД
-```
-
-### Управление пользователями
-
-Пользователяи создаются только из панели Администратора суперпользователя.
-Создать суперпользховтеля через комсанду:
+SECRET_KEY=p&l%385148kslhtyn^##a1)ilz@4zqj=rq&agdol^##zgl9(vs #секретный ключ джанго
+DEBUG=False #По умолчанию в Django выключен режим отладки.
 
 ```
-python3 manage.py createsuperusers
-```
+
 
 ### Описание работы и примеры
 
 После запуска сервера документация находится по адресу:
 
-http://127.0.0.1:8000/redoc/
+http://127.0.0.1/redoc/
 
 ## Примеры запросов к API
 
@@ -111,21 +117,21 @@ http://127.0.0.1:8000/redoc/
 
 ```
 GET-запрос
-http://127.0.0.1:8000/api/v1/posts/
+http://127.0.0.1/api/v1/posts/
 ```
 
 Создать публикацию:
 
 ```
 POST-запрос
-http://127.0.0.1:8000/api/v1/posts/
+http://127.0.0.1/api/v1/posts/
 ```
 
 Создать комментарий к публикации с ID=1:
 
 ```
 POST-запрос
-http://127.0.0.1:8000/api/v1/posts/1/comments/
+http://127.0.0.1/api/v1/posts/1/comments/
 ```
 
 ## Получение JWT токенов
@@ -136,5 +142,6 @@ http://127.0.0.1:8000/api/v1/posts/1/comments/
 
 ```
 POST-запрос
-http://127.0.0.1:8000/api/v1/jwt/create/
+http://127.0.0.1/api/v1/jwt/create/
 ```
+
